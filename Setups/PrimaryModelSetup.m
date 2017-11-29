@@ -1,7 +1,4 @@
-% ExampleSetup_Chamber.m
-% This example shows a model setup for simulation of
-% a series of photochemical chamber experiments.
-% Read comments in each section for a guided tour.
+% IndoorAirFOAMSetup.m
 %
 
 clear
@@ -27,26 +24,23 @@ Met = {...
 
 %% CHEMICAL CONCENTRATIONS
 %{
-Imagine that we are simulating a series of three isoprene oxidation experiments, each with
-  different NOx conditions. We fill the bag with isoprene, H2O2 (our HOx source), and NO2,
-  then turn the lights on and let it run.
-Let's assume that initial isoprene and H2O2 are the same for all three runs,
-  so we can input them as scalars.
-All HoldMe values are set to 0 so that concentrations will evolve.
-If you'd rather use CH3ONO as your OH source, add it in below and comment out H2O2.
-  Note that this will make more NOx.
+Common chemical species and concentrations found indoors
 %}
 
 InitConc = {...
-%   names       conc(ppb)           HoldMe
-    'TOLUENE'      10                    0;
-    'LIMONENE'       [.1; 1; 10]           0;
-    'APINENE'      200                   0;
-    'C5H8'      200                   0;
-    'OXYL'      200                   0;
-    'PXYL'      200                   0;
-    'MXYL'      200                   0;
-    'BENZENE'      200                   0;
+%   names         conc(ppbv)           HoldMe
+    'O3'             20.0                0;
+    'NO'              6.9                0;
+    'NO2'            28.0                0;
+    'HONO'            5.2                0;
+    'TOLUENE'         0.89               0;
+    'LIMONENE'        0.35               0;
+    'APINENE'         0.9                0;
+    'C5H8'            0.93               0;
+    'OXYL'            2.3                0;
+    'PXYL'            4.6                0;
+    'MXYL'            4.6                0;
+    'BENZENE'         3.1                0;
     };
 
 %% CHEMISTRY
@@ -61,10 +55,7 @@ the specific set of initial species included above (isoprene and inorganics).
 %}
 
 ChemFiles = {...
-    'MCMv331_K(Met)';
-    'MCMv331_J(Met,1)'; %Jmethod flag of 1 specifies using "BottomUp" J-value method.
-    'MCMv331_Inorg_Isoprene';
-    'CH3ONO_hv'; %not included in MCM (doesn't exist in the atmosphere)
+    'mcm_indoor_air_model';
     };
 
 %% DILUTION CONCENTRATIONS
