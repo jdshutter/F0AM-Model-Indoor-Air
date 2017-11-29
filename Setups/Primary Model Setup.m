@@ -20,7 +20,7 @@ We have also specified a text file containing a spectral actinic flux (wavelengt
 Met = {...
 %   names       values          
     'P'         1013                       ; %Pressure, mbar
-    'T'         298                        ; %Temperature, K
+    'T'         300                        ; %Temperature, K
     'RH'        10                         ; %Relative Humidity, percent
     'LFlux'     'ExampleLightFlux.txt'     ; %Text file for radiation spectrum
     'jcorr'     1                          ; %light attenuation factor
