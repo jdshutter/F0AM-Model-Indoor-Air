@@ -3,7 +3,6 @@
 % a series of photochemical chamber experiments.
 % Read comments in each section for a guided tour.
 %
-% 20151022 GMW
 
 clear
 
@@ -40,9 +39,14 @@ If you'd rather use CH3ONO as your OH source, add it in below and comment out H2
 
 InitConc = {...
 %   names       conc(ppb)           HoldMe
-    'O3'      10                    0;
-    'NO2'       [.1; 1; 10]           0;
-    'H2O2'      200                   0;
+    'TOLUENE'      10                    0;
+    'LIMONENE'       [.1; 1; 10]           0;
+    'APINENE'      200                   0;
+    'C5H8'      200                   0;
+    'OXYL'      200                   0;
+    'PXYL'      200                   0;
+    'MXYL'      200                   0;
+    'BENZENE'      200                   0;
     };
 
 %% CHEMISTRY
