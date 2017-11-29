@@ -40,10 +40,9 @@ If you'd rather use CH3ONO as your OH source, add it in below and comment out H2
 
 InitConc = {...
 %   names       conc(ppb)           HoldMe
-    'C5H8'      10                    0;
+    'O3'      10                    0;
     'NO2'       [.1; 1; 10]           0;
-    'H2O2'      200                   0; %OH source option #1
-%     'CH3ONO'    0.8                     0;... %OH source option #2
+    'H2O2'      200                   0;
     };
 
 %% CHEMISTRY
