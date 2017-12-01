@@ -9,8 +9,7 @@ Pressure, temperature, and either RH or H2O are required Met inputs.
 We will assume them constant throughout the simulation,
   thus we need only specify a single (scalar) value for each.
 We have also specified a text file containing a spectral actinic flux (wavelength and photons/cm^2/s),
-  which will be used to calculate J-values. This particular spectrum was measured on a real
-  chamber (thanks to John Crounse).
+  which will be used to calculate J-values.
 %}
 
 Met = {...
@@ -32,7 +31,8 @@ InitConc = {...
     'O3'             20.0                0;
     'NO'              6.9                0;
     'NO2'            28.0                0;
-    'HONO'            5.2                0;
+    'HONO'            5.0                0;
+    'H2O2'            1.0                0;
     'TOLUENE'         0.89               0;
     'LIMONENE'        0.35               0;
     'APINENE'         0.9                0;
@@ -81,8 +81,8 @@ ModelOptions.Verbose       = 1;
 ModelOptions.EndPointsOnly = 0;
 ModelOptions.LinkSteps     = 0;
 ModelOptions.Repeat        = 1;
-ModelOptions.IntTime       = 3*3600;
-ModelOptions.SavePath      = 'ChamberExampleOutput.mat';
+ModelOptions.IntTime       = 3600;
+ModelOptions.SavePath      = 'IndoorAirFOAMModelOutput.mat';
 
 %% MODEL RUN
 % Now we call the model.
@@ -95,11 +95,6 @@ S = F0AM_ModelCore(Met,InitConc,ChemFiles,BkgdConc,ModelOptions);
 %% PLOTTING
 % Now, a few examples of how to look at the model output.
 
-% First, let's separate each of the steps since they each represent a different experiment.
-% "SplitRun" will make three new structures, S1, S2 and S3, corresponding to each of the
-% three steps with different initial NO2 (0.1, 1 and 10 ppbv).
-
-SplitRun(S,'step')
 
 % Next, let's look at some time series for our fav molecules.
 % Note that you can also do this yourself with the model output structures,
