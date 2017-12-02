@@ -12,12 +12,12 @@ We have also specified a text file containing a spectral actinic flux (wavelengt
 %}
 
 Met = {...
-%   names     values          
-    'P'       1013                           ; %Pressure, mbar
-    'T'       298                            ; %Temperature, K
-    'RH'      10                             ; %Relative Humidity, percent
-    'LFlux'   'Incandescent_PhotonFlux.txt'  ; %Text file for radiation spectrum
-    'jcorr'   1                              ; %light attenuation factor
+%   names       values          
+    'P'         1013                       ; %Pressure, mbar
+    'T'         298                        ; %Temperature, K
+    'RH'        10                         ; %Relative Humidity, percent
+    'LFlux'     'ExampleLightFlux.txt'     ; %Text file for radiation spectrum
+    'jcorr'     1                          ; %light attenuation factor
     };
 
 %% CHEMICAL CONCENTRATIONS
@@ -28,18 +28,6 @@ Common chemical species and concentrations found indoors
 InitConc = {...
 %   names         conc(ppbv)           HoldMe
     'O3'             20.0                0;
-    'NO'              6.9                0;
-    'NO2'            28.0                0;
-    'HONO'            5.0                0;
-    'H2O2'            1.0                0;
-    'TOLUENE'         0.89               0;
-    'LIMONENE'        0.35               0;
-    'APINENE'         0.9                0;
-    'C5H8'            0.93               0;
-    'OXYL'            2.3                0;
-    'PXYL'            4.6                0;
-    'MXYL'            4.6                0;
-    'BENZENE'         3.1                0;
     };
 
 %% CHEMISTRY
@@ -56,7 +44,7 @@ the specific set of initial species included above (isoprene and inorganics).
 ChemFiles = {...
     'MCMv331_K(Met)';...
     'MCMv331_J(Met,2)';...
-    'mcm_indoor_air_model'};
+    'O3Deposition'};
 
 %% DILUTION CONCENTRATIONS
 % We are not diluting the chamber air, so this input is irrelevant (but still necessary).
@@ -81,7 +69,7 @@ ModelOptions.Verbose       = 1;
 ModelOptions.EndPointsOnly = 0;
 ModelOptions.LinkSteps     = 0;
 ModelOptions.Repeat        = 1;
-ModelOptions.IntTime       = 3600;
+ModelOptions.IntTime       = 5*3600;
 ModelOptions.SavePath      = 'IndoorAirFOAMModelOutput.mat';
 
 %% MODEL RUN

@@ -231,6 +231,13 @@ RO2ToAdd = {...
 
 AddSpecies
 
+%This was added to model first-order loss of O3 due to surface deposition
+i=i+1;
+Rnames{i} = 'O3';
+k(:,i) = 0.0001;
+Gstr{i,1} = 'O3'; 
+fO3(i)=fO3(i)-1;
+
 i=i+1;
 Rnames{i} = 'O = O3';
 k(:,i) = 5.6e-34.*.78.*M.*(T./300).^-2.6.*.21.*M;
