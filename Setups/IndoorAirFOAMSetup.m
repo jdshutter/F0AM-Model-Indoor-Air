@@ -16,7 +16,7 @@ Met = {...
     'P'       1013                           ; %Pressure, mbar
     'T'       298                            ; %Temperature, K
     'RH'      50                             ; %Relative Humidity, percent
-    'LFlux'   'Sunlight_PhotonFlux.txt'  ; %Text file for radiation spectrum
+    'LFlux'   'Sunlight_PhotonFlux.txt'      ; %Text file for radiation spectrum
     'jcorr'   1                              ; %light attenuation factor
     'kdil'    0                              ; %dilution factor /s
     };
@@ -28,13 +28,14 @@ Common chemical species and concentrations found indoors
 
 InitConc = {...
 %   names         conc(ppbv)           HoldMe
-    'O3'             20.0                0;
-    'NO'              6.9                0;
-    'NO2'            28.0                0;
-    'HONO'            5.0                0;
-    'H2O2'            1.0                0;
-    'LIMONENE'        0.35               0;
-    'APINENE'         0.9                0;
+    'O3'             20.0                0; %20
+    'OH'              1.2184e-05         0; %1.2184e-05
+    'NO'              6.9                0; %6.9
+    'NO2'            28.0                0; %28.0
+    'HONO'           50.0                0; %5.0
+    'H2O2'            1.0                0; %1.0
+    'LIMONENE'        0.35               0; %0.35
+    'APINENE'         0.9                0; %0.9
     'C5H8'            0.93               0;
     'OXYL'            2.3                0;
     'PXYL'            4.6                0;
@@ -83,8 +84,8 @@ ModelOptions.Verbose        = 1;
 ModelOptions.EndPointsOnly  = 0;
 ModelOptions.LinkSteps      = 0;
 ModelOptions.Repeat         = 1;
-ModelOptions.IntTime        = 1*3600;
-ModelOptions.SavePath       = 'IndoorAirFOAMModelOutput_LED_PhotonFlux.mat';
+ModelOptions.IntTime        = 3600;
+ModelOptions.SavePath       = 'IndoorAirFOAMModelOutput_Sunlight.mat';
 
 %% MODEL RUN
 % Now we call the model.
@@ -109,8 +110,8 @@ S.Conc.HOx = S.Conc.OH + S.Conc.HO2;
  %lnames = {'Standard'};
  %PlotConc('O3',Splot,'unit','ppbv','lnames',lnames)
 
- Sp2plot = {'O3','NOx','HONO','H2O2', 'APINENE','LIMONENE','AROMAS','C5H8'};
- n2plot = {};
+Sp2plot = {'HCHO','GLYOX','O3','NO2','NO','HONO','H2O2', 'APINENE','LIMONENE','AROMAS','C5H8'};
+n2plot = {};
 PlotConcGroup(Sp2plot,S,n2plot,'ptype','line')
 
 %Sp2plot = {'NO', 'NO2', 'NOx','HNO3','HOx',};
@@ -122,10 +123,10 @@ PlotConcGroup(Sp2plot,S,n2plot,'ptype','line')
 % 
 % % Now, let's dig in and look at the chemistry.
 % 
- PlotRates('H2O2',S,6,'ptype','fill','unit','ppb_h','sumEq',1);
+% PlotRates('H2O2',S,6,'ptype','fill','unit','ppb_h','sumEq',1);
 % 
- pts2avg = S.Time>1800 & S.Time<3600; %average 2nd 30 minutes
- PlotRatesAvg('O3',S,5,'ptype','hbar','unit','ppb_h','pts2avg',pts2avg)
+% pts2avg = S.Time>1800 & S.Time<3600; %average 2nd 30 minutes
+% PlotRatesAvg('O3',S,5,'ptype','hbar','unit','ppb_h','pts2avg',pts2avg)
 % 
 % Inorg = {'Inorganic';'CO';'H2';'O3';'HO2';'H2O2'};
 % Reactants = {Inorg; 'NO2'; 'C5H8'; 'HCHO'; 'MVK'; 'MACR'};

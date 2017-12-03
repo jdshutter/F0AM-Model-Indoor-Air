@@ -300,10 +300,11 @@ switch Jmethod
         
     case {1,'BOTTOMUP'}
         J = J_BottomUp(LFlux,T,P);
+        a = J;
         
     case {2,'HYBRID'}
         J = J_Hybrid(SZA,ALT,O3col,albedo);
-        
+        a = J;
     otherwise
         error(['MCMv331_J: invalid Jmethod "' Jmethod ...
             '". Valid options are "MCM" (0), "BOTTOMUP" (1), "HYBRID" (2).'])
