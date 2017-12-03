@@ -103,6 +103,10 @@ S = F0AM_ModelCore(Met,InitConc,ChemFiles,BkgdConc,ModelOptions);
  lnames = {'Standard'};
  PlotConc('O3',Splot,'unit','ppbv','lnames',lnames)
 % 
+ Sp2plot = {'O3','BENZENE'};
+ n2plot = {};
+PlotConcGroup(Sp2plot,S,n2plot,'ptype','line')
+
 % PlotConcGroup(S3.Cnames(S3.iRO2),S3,5,'ptype','fill','unit','ppb','name','RO_2')
 % 
 % % Now, let's dig in and look at the chemistry.
