@@ -18,6 +18,7 @@ Met = {...
     'RH'        10                         ; %Relative Humidity, percent
     'LFlux'     'ExampleLightFlux.txt'     ; %Text file for radiation spectrum
     'jcorr'     1                          ; %light attenuation factor
+    'kdil'      0                          ; %dilution factor /s
     };
 
 %% CHEMICAL CONCENTRATIONS
@@ -51,7 +52,7 @@ ChemFiles = {...
 
 BkgdConc = {...
 %   names           values
-    'DEFAULT'       0;   %0 for all zeros, 1 to use InitConc
+    'DEFAULT'       1;   %0 for all zeros, 1 to use InitConc
     };
 
 %% OPTIONS

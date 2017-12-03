@@ -15,9 +15,10 @@ Met = {...
 %   names     values          
     'P'       1013                           ; %Pressure, mbar
     'T'       298                            ; %Temperature, K
-    'RH'      10                             ; %Relative Humidity, percent
+    'RH'      50                             ; %Relative Humidity, percent
     'LFlux'   'Incandescent_PhotonFlux.txt'  ; %Text file for radiation spectrum
     'jcorr'   1                              ; %light attenuation factor
+    'kdil'    0                              ; %dilution factor /s
     };
 
 %% CHEMICAL CONCENTRATIONS
@@ -32,7 +33,6 @@ InitConc = {...
     'NO2'            28.0                0;
     'HONO'            5.0                0;
     'H2O2'            1.0                0;
-    'TOLUENE'         0.89               0;
     'LIMONENE'        0.35               0;
     'APINENE'         0.9                0;
     'C5H8'            0.93               0;
@@ -40,6 +40,7 @@ InitConc = {...
     'PXYL'            4.6                0;
     'MXYL'            4.6                0;
     'BENZENE'         3.1                0;
+    'TOLUENE'         0.89               0;
     };
 
 %% CHEMISTRY
@@ -57,6 +58,7 @@ ChemFiles = {...
     'MCMv331_K(Met)';...
     'MCMv331_J(Met,2)';...
     'mcm_indoor_air_model'};
+
 
 %% DILUTION CONCENTRATIONS
 % We are not diluting the chamber air, so this input is irrelevant (but still necessary).
@@ -77,12 +79,12 @@ BkgdConc = {...
 "SavePath" is commented out, so output will be saved in a dated folder in the \Runs\ folder.
 %}
 
-ModelOptions.Verbose       = 1;
-ModelOptions.EndPointsOnly = 0;
-ModelOptions.LinkSteps     = 0;
-ModelOptions.Repeat        = 1;
-ModelOptions.IntTime       = 3600;
-ModelOptions.SavePath      = 'IndoorAirFOAMModelOutput.mat';
+ModelOptions.Verbose        = 1;
+ModelOptions.EndPointsOnly  = 0;
+ModelOptions.LinkSteps      = 0;
+ModelOptions.Repeat         = 1;
+ModelOptions.IntTime        = 2*3600;
+ModelOptions.SavePath       = 'IndoorAirFOAMModelOutput.mat';
 
 %% MODEL RUN
 % Now we call the model.
@@ -92,3 +94,29 @@ ModelOptions.SavePath      = 'IndoorAirFOAMModelOutput.mat';
 S = F0AM_ModelCore(Met,InitConc,ChemFiles,BkgdConc,ModelOptions);
 % clear Met InitConc ChemFiles BkgdConc ModelOptions
 
+% Next, let's look at some time series for our fav molecules.
+% Note that you can also do this yourself with the model output structures,
+%   e.g. plot(S1.Time,S1.Conc.C5H8)
+% The UWCM-provided functions are just more convenient for comparing multiple simulations.
+
+ Splot = {S};
+ lnames = {'Standard'};
+ PlotConc('O3',Splot,'unit','ppbv','lnames',lnames)
+% 
+% PlotConcGroup(S3.Cnames(S3.iRO2),S3,5,'ptype','fill','unit','ppb','name','RO_2')
+% 
+% % Now, let's dig in and look at the chemistry.
+% 
+ PlotRates('O3',S,6,'ptype','fill','unit','ppb_h','sumEq',1);
+% 
+ pts2avg = S.Time>1800 & S.Time<3600; %average 2nd 30 minutes
+ PlotRatesAvg('O3',S,5,'ptype','hbar','unit','ppb_h','pts2avg',pts2avg)
+% 
+% Inorg = {'Inorganic';'CO';'H2';'O3';'HO2';'H2O2'};
+% Reactants = {Inorg; 'NO2'; 'C5H8'; 'HCHO'; 'MVK'; 'MACR'};
+% PlotReactivity('OH',S3,Reactants,'ptype','line');
+% 
+% %finally, let's look at the total yield of HPALDs in the low-NOx case
+ yieldWindow = [500 1000]; %time window, seconds
+ PlotYield(S,'O3',{'C5HPALD1','C5HPALD2'},yieldWindow);
+% 
