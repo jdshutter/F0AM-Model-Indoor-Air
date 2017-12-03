@@ -16,7 +16,7 @@ Met = {...
     'P'       1013                           ; %Pressure, mbar
     'T'       298                            ; %Temperature, K
     'RH'      50                             ; %Relative Humidity, percent
-    'LFlux'   'Incandescent_PhotonFlux.txt'  ; %Text file for radiation spectrum
+    'LFlux'   'Sunlight_PhotonFlux.txt'  ; %Text file for radiation spectrum
     'jcorr'   1                              ; %light attenuation factor
     'kdil'    0                              ; %dilution factor /s
     };
@@ -56,7 +56,7 @@ the specific set of initial species included above (isoprene and inorganics).
 
 ChemFiles = {...
     'MCMv331_K(Met)';...
-    'MCMv331_J(Met,2)';...
+    'MCMv331_J(Met,1)';...
     'mcm_indoor_air_model'};
 
 
@@ -83,8 +83,8 @@ ModelOptions.Verbose        = 1;
 ModelOptions.EndPointsOnly  = 0;
 ModelOptions.LinkSteps      = 0;
 ModelOptions.Repeat         = 1;
-ModelOptions.IntTime        = 2*3600;
-ModelOptions.SavePath       = 'IndoorAirFOAMModelOutput.mat';
+ModelOptions.IntTime        = 1*3600;
+ModelOptions.SavePath       = 'IndoorAirFOAMModelOutput_LED_PhotonFlux.mat';
 
 %% MODEL RUN
 % Now we call the model.
@@ -92,6 +92,12 @@ ModelOptions.SavePath       = 'IndoorAirFOAMModelOutput.mat';
 % Let's also throw away the inputs (don't worry, they are saved in the output structure).
 
 S = F0AM_ModelCore(Met,InitConc,ChemFiles,BkgdConc,ModelOptions);
+
+%Lumping Species into Chemical Families
+S.Conc.NOx = S.Conc.NO + S.Conc.NO2;
+S.Conc.AROMAS = S.Conc.OXYL + S.Conc.PXYL + S.Conc.MXYL + S.Conc.BENZENE + S.Conc.TOLUENE;
+S.Conc.HOx = S.Conc.OH + S.Conc.HO2;
+
 % clear Met InitConc ChemFiles BkgdConc ModelOptions
 
 % Next, let's look at some time series for our fav molecules.
@@ -99,19 +105,24 @@ S = F0AM_ModelCore(Met,InitConc,ChemFiles,BkgdConc,ModelOptions);
 %   e.g. plot(S1.Time,S1.Conc.C5H8)
 % The UWCM-provided functions are just more convenient for comparing multiple simulations.
 
- Splot = {S};
- lnames = {'Standard'};
- PlotConc('O3',Splot,'unit','ppbv','lnames',lnames)
-% 
- Sp2plot = {'O3','BENZENE'};
+ %Splot = {S};
+ %lnames = {'Standard'};
+ %PlotConc('O3',Splot,'unit','ppbv','lnames',lnames)
+
+ Sp2plot = {'O3','NOx','HONO','H2O2', 'APINENE','LIMONENE','AROMAS','C5H8'};
  n2plot = {};
 PlotConcGroup(Sp2plot,S,n2plot,'ptype','line')
+
+%Sp2plot = {'NO', 'NO2', 'NOx','HNO3','HOx',};
+ %n2plot = {};
+%PlotConcGroup(Sp2plot,S,n2plot,'ptype','line')
+
 
 % PlotConcGroup(S3.Cnames(S3.iRO2),S3,5,'ptype','fill','unit','ppb','name','RO_2')
 % 
 % % Now, let's dig in and look at the chemistry.
 % 
- PlotRates('O3',S,6,'ptype','fill','unit','ppb_h','sumEq',1);
+ PlotRates('H2O2',S,6,'ptype','fill','unit','ppb_h','sumEq',1);
 % 
  pts2avg = S.Time>1800 & S.Time<3600; %average 2nd 30 minutes
  PlotRatesAvg('O3',S,5,'ptype','hbar','unit','ppb_h','pts2avg',pts2avg)
@@ -121,6 +132,6 @@ PlotConcGroup(Sp2plot,S,n2plot,'ptype','line')
 % PlotReactivity('OH',S3,Reactants,'ptype','line');
 % 
 % %finally, let's look at the total yield of HPALDs in the low-NOx case
- yieldWindow = [500 1000]; %time window, seconds
- PlotYield(S,'O3',{'C5HPALD1','C5HPALD2'},yieldWindow);
+ %yieldWindow = [500 1000]; %time window, seconds
+ %PlotYield(S,'O3',{'C5HPALD1','C5HPALD2'},yieldWindow);
 % 
