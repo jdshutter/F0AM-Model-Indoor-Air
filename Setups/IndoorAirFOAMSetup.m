@@ -16,7 +16,7 @@ Met = {...
     'P'       1013                           ; %Pressure, mbar
     'T'       298                            ; %Temperature, K
     'RH'      50                             ; %Relative Humidity, percent
-    'LFlux'   'Sunlight_PhotonFlux.txt'  ; %Text file for radiation spectrum
+    'LFlux'   'ExampleLightFlux.txt'  ; %Text file for radiation spectrum
     'jcorr'   1                              ; %light attenuation factor
     'kdil'    0                              ; %dilution factor /s
     };
@@ -84,7 +84,7 @@ ModelOptions.EndPointsOnly  = 0;
 ModelOptions.LinkSteps      = 0;
 ModelOptions.Repeat         = 1;
 ModelOptions.IntTime        = 1*3600;
-ModelOptions.SavePath       = 'IndoorAirFOAMModelOutput_LED_PhotonFlux.mat';
+ModelOptions.SavePath       = 'IndoorAirFOAMModelOutput_ExampleLightFlux.mat';
 
 %% MODEL RUN
 % Now we call the model.
@@ -109,7 +109,7 @@ S.Conc.HOx = S.Conc.OH + S.Conc.HO2;
  %lnames = {'Standard'};
  %PlotConc('O3',Splot,'unit','ppbv','lnames',lnames)
 
- Sp2plot = {'O3','NOx','HONO','H2O2', 'APINENE','LIMONENE','AROMAS','C5H8'};
+ Sp2plot = {'O3','NO', 'NO2', 'HONO','H2O2', 'APINENE','LIMONENE','AROMAS','C5H8'};
  n2plot = {};
 PlotConcGroup(Sp2plot,S,n2plot,'ptype','line')
 
@@ -122,7 +122,7 @@ PlotConcGroup(Sp2plot,S,n2plot,'ptype','line')
 % 
 % % Now, let's dig in and look at the chemistry.
 % 
- PlotRates('H2O2',S,6,'ptype','fill','unit','ppb_h','sumEq',1);
+ PlotRates('NO2',S,6,'ptype','fill','unit','ppb_h','sumEq',1);
 % 
  pts2avg = S.Time>1800 & S.Time<3600; %average 2nd 30 minutes
  PlotRatesAvg('O3',S,5,'ptype','hbar','unit','ppb_h','pts2avg',pts2avg)
