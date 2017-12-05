@@ -16,7 +16,7 @@ Met = {...
     'P'       1013                           ; %Pressure, mbar
     'T'       298                            ; %Temperature, K
     'RH'      50                             ; %Relative Humidity, percent
-    'LFlux'   'Sunlight_PhotonFlux.txt'  ; %Text file for radiation spectrum
+    'LFlux'   'Sunlight_PhotonFlux.txt'           ; %Text file for radiation spectrum
     'jcorr'   1                              ; %light attenuation factor
     'kdil'    0                              ; %dilution factor /s
     };
@@ -28,12 +28,12 @@ Common chemical species and concentrations found indoors
 
 InitConc = {...
 %   names         conc(ppbv)           HoldMe
-    'O3'                20               0;
-    'NO'              10.0               0;
-    'NO2'            40.0                0;
+    'O3'              20.0               0;
+    'NO'              20                  0;
+    'NO2'             80                  0;
     'HONO'            5.0                0;
     'H2O2'            1.0                0;
-    'LIMONENE'        0.35                 0;
+    'LIMONENE'        70                 0;
     'APINENE'         0.9                0;
     'C5H8'            0.93               0;
     'OXYL'            2.3                0;
@@ -84,7 +84,7 @@ ModelOptions.EndPointsOnly  = 0;
 ModelOptions.LinkSteps      = 0;
 ModelOptions.Repeat         = 1;
 ModelOptions.IntTime        = 1*3600;
-ModelOptions.SavePath       = 'BASE.mat';
+ModelOptions.SavePath       = 'NOx_100_HIGHVOC.mat';
 
 %% MODEL RUN
 % Now we call the model.
