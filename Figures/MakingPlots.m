@@ -104,3 +104,24 @@ hold on
 plot(NOx_100ppb_HIGHVOC_TIME,NOx_100ppb_HIGHVOC_O3,'c')
 
 xlabel('Model Time (s)'), ylabel('[Ozone] (ppb)'), title('Varying NOx for High VOC')
+
+%% Photon Fluxes for Light Sources %%
+
+%Extract Wavelengths and Photon Fluxes
+CFT_Wavelength = CFTPhotonFlux.VarName1;
+CFT_PhotonFlux = CFTPhotonFlux.E00;
+NCAR_Wavelength = NCARExampleLightFlux.VarName1;
+NCAR_PhotonFlux = NCARExampleLightFlux.E12;
+Sunlight_Wavelength = SunlightPhotonFlux.Wavelength;
+Sunlight_PhotonFlux = SunlightPhotonFlux.Flux;
+
+%Plots
+figure, plot(CFT_Wavelength,CFT_PhotonFlux,'k')
+hold on 
+plot(NCAR_Wavelength,NCAR_PhotonFlux,'b')
+hold on 
+plot(Sunlight_Wavelength,Sunlight_PhotonFlux,'r')
+
+
+xlabel('Wavelength (nm)'), ylabel('Photon Flux (photons cm^-2 nm^-1 s^-1)'), title('Photon Fluxes for Outdoor Sunlight, Indoor Sunlight, and a Compact Fluorescent Tube')
+

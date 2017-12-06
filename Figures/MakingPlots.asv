@@ -1,5 +1,8 @@
 %% Figures Pertinent to Indoor Air Project %%
 
+
+
+
 %% Varying Initial O3 Mixing Ratio %%
 
 % LOW VOC Scenario
@@ -61,20 +64,20 @@ xlabel('Model Time (s)'), ylabel('[Ozone] (ppb)'), title('Varying Light Source f
 %% Varying Surface Deposition Rates %%
 
 %LOW VOC Scenario
-figure, plot(Surface_0_LOWVOC_TIME, Surface_0_LOWVOC_O3)
+figure, plot(Surface_0_LOWVOC_TIME, Surface_0_LOWVOC_O3, 'k')
 hold on
-plot(Surface_BASE_LOWVOC_TIME, Surface_BASE_LOWVOC_O3)
+plot(Surface_BASE_LOWVOC_TIME, Surface_BASE_LOWVOC_O3, 'b')
 hold on
-plot(Surface_10_LOWVOC_TIME, Surface_10_LOWVOC_O3)
+plot(Surface_10_LOWVOC_TIME, Surface_10_LOWVOC_O3, 'r')
 
 xlabel('Model Time (s)'), ylabel('[Ozone] (ppb)'), title('Varying Dep Rate for Low VOC')
 
 %HIGH VOC Scenario
-figure, plot(Surface_0_HIGHVOC_TIME, Surface_0_HIGHVOC_O3)
+figure, plot(Surface_0_HIGHVOC_TIME, Surface_0_HIGHVOC_O3, 'k')
 hold on
-plot(Surface_BASE_HIGHVOC_TIME, Surface_BASE_HIGHVOC_O3)
+plot(Surface_BASE_HIGHVOC_TIME, Surface_BASE_HIGHVOC_O3, 'b')
 hold on
-plot(Surface_10_HIGHVOC_TIME, Surface_10_HIGHVOC_O3)
+plot(Surface_10_HIGHVOC_TIME, Surface_10_HIGHVOC_O3, 'r')
 
 xlabel('Model Time (s)'), ylabel('[Ozone] (ppb)'), title('Varying Dep Rate for High VOC')
 
@@ -83,10 +86,43 @@ xlabel('Model Time (s)'), ylabel('[Ozone] (ppb)'), title('Varying Dep Rate for H
 %LOW VOC Scenario
 figure, plot(NOx_0_LOWVOC_TIME,NOx_0_LOWVOC_O3,'k')
 hold on 
-plot(NOx_0_LOWVOC_TIME,NOx_0_LOWVOC_O3,'k')
+plot(NOx_500ppt_LOWVOC_TIME,NOx_500ppt_LOWVOC_O3,'b')
 hold on 
-plot(NOx_0_LOWVOC_TIME,NOx_0_LOWVOC_O3,'k')
+plot(NOx_50ppb_LOWVOC_TIME,NOx_50ppb_LOWVOC_O3,'r')
 hold on 
-plot(NOx_0_LOWVOC_TIME,NOx_0_LOWVOC_O3,'k')
+plot(NOx_100ppb_LOWVOC_TIME,NOx_100ppb_LOWVOC_O3,'c')
+
+xlabel('Model Time (s)'), ylabel('[Ozone] (ppb)'), title('Varying NOx for Low VOC')
+
+%HIGH VOC Scenario
+figure, plot(NOx_0_HIGHVOC_TIME,NOx_0_HIGHVOC_O3,'k')
+hold on 
+plot(NOx_500ppt_HIGHVOC_TIME,NOx_500ppt_HIGHVOC_O3,'b')
+hold on 
+plot(NOx_50ppb_HIGHVOC_TIME,NOx_50ppb_HIGHVOC_O3,'r')
+hold on 
+plot(NOx_100ppb_HIGHVOC_TIME,NOx_100ppb_HIGHVOC_O3,'c')
 
 xlabel('Model Time (s)'), ylabel('[Ozone] (ppb)'), title('Varying NOx for High VOC')
+
+%% Photon Fluxes for Light Sources %%
+
+%Extract Wavelengths and Photon Fluxes
+CFT_Wavelength = CFTPhotonFlux.VarName1;
+CFT_PhotonFlux = CFTPhotonFlux.E00;
+NCAR_Wavelength = NCARExampleLightFlux.VarName1;
+NCAR_PhotonFlux = NCARExampleLightFlux.E12;
+Sunlight_Wavelength = SunlightPhotonFlux.Wavelength;
+Sunlight_PhotonFlux = SunlightPhotonFlux.Flux;
+
+%Plots
+figure, plot(CFT_Wavelength,NOx_0_HIGHVOC_O3,'k')
+hold on 
+plot(NOx_500ppt_HIGHVOC_TIME,NOx_500ppt_HIGHVOC_O3,'b')
+hold on 
+plot(NOx_50ppb_HIGHVOC_TIME,NOx_50ppb_HIGHVOC_O3,'r')
+hold on 
+plot(NOx_100ppb_HIGHVOC_TIME,NOx_100ppb_HIGHVOC_O3,'c')
+
+xlabel('Model Time (s)'), ylabel('[Ozone] (ppb)'), title('Varying NOx for High VOC')
+
