@@ -76,6 +76,7 @@ hold on
 plot(Surface_10_LOWVOC_TIME, Surface_10_LOWVOC_O3, 'r')
 
 xlabel('Model Time (s)'), ylabel('[Ozone] (ppb)'), title('Varying Dep Rate for Low VOC')
+legend('k = 0/hr', 'k = 5/hr', 'k = 10/hr')
 
 %HIGH VOC Scenario
 figure, plot(Surface_0_HIGHVOC_TIME, Surface_0_HIGHVOC_O3, 'k')
@@ -85,30 +86,29 @@ hold on
 plot(Surface_10_HIGHVOC_TIME, Surface_10_HIGHVOC_O3, 'r')
 
 xlabel('Model Time (s)'), ylabel('[Ozone] (ppb)'), title('Varying Dep Rate for High VOC')
+legend('k = 0/hr', 'k = 5/hr', 'k = 10/hr')
 
 %% Varying NOx %%
 
 %LOW VOC Scenario
 figure, plot(NOx_0_LOWVOC_TIME,NOx_0_LOWVOC_O3,'k')
 hold on 
-plot(NOx_500ppt_LOWVOC_TIME,NOx_500ppt_LOWVOC_O3,'b')
-hold on 
 plot(NOx_50ppb_LOWVOC_TIME,NOx_50ppb_LOWVOC_O3,'r')
 hold on 
 plot(NOx_100ppb_LOWVOC_TIME,NOx_100ppb_LOWVOC_O3,'c')
 
 xlabel('Model Time (s)'), ylabel('[Ozone] (ppb)'), title('Varying NOx for Low VOC')
+legend('NOx = 0 ppb', 'NOx = 50 ppb', 'NOx = 100 ppb')
 
 %HIGH VOC Scenario
 figure, plot(NOx_0_HIGHVOC_TIME,NOx_0_HIGHVOC_O3,'k')
-hold on 
-plot(NOx_500ppt_HIGHVOC_TIME,NOx_500ppt_HIGHVOC_O3,'b')
 hold on 
 plot(NOx_50ppb_HIGHVOC_TIME,NOx_50ppb_HIGHVOC_O3,'r')
 hold on 
 plot(NOx_100ppb_HIGHVOC_TIME,NOx_100ppb_HIGHVOC_O3,'c')
 
 xlabel('Model Time (s)'), ylabel('[Ozone] (ppb)'), title('Varying NOx for High VOC')
+legend('NOx = 0 ppb', 'NOx = 50 ppb', 'NOx = 100 ppb')
 
 %% Photon Fluxes for Light Sources %%
 
@@ -121,12 +121,14 @@ Sunlight_Wavelength = SunlightPhotonFlux.Wavelength;
 Sunlight_PhotonFlux = SunlightPhotonFlux.Flux;
 
 %Plots
-figure, plot(CFT_Wavelength,CFT_PhotonFlux,'k')
+figure, plot(NCAR_Wavelength,NCAR_PhotonFlux,'b')
 hold on 
-plot(NCAR_Wavelength,NCAR_PhotonFlux,'b')
+plot(CFT_Wavelength,CFT_PhotonFlux,'k')
 hold on 
 plot(Sunlight_Wavelength,Sunlight_PhotonFlux,'r')
 
 
 xlabel('Wavelength (nm)'), ylabel('Photon Flux (photons cm^-2 nm^-1 s^-1)'), title('Photon Fluxes for Outdoor Sunlight, Indoor Sunlight, and a Compact Fluorescent Tube')
+legend('Outdoor Sunlight NCAR', 'Compact Fluorescent Tube', 'Indoor Sunglight')
+
 
