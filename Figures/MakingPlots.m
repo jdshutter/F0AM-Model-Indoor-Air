@@ -19,9 +19,11 @@ hold on
 plot(O3_1ppb_LOWVOC_TIME,O3_1ppb_LOWVOC_O3,'m')
 hold on 
 plot(O3_5ppb_LOWVOC_TIME,O3_5ppb_LOWVOC_O3,'k')
-hold on 
-plot(O3_20ppb_LOWVOC_TIME,O3_20ppb_LOWVOC_O3,'b')
+%hold on 
+%plot(O3_20ppb_LOWVOC_TIME,O3_20ppb_LOWVOC_O3,'b')
+
 xlabel('Model Time (s)'), ylabel('[Ozone] (ppb)'), title('Varying Initial [O3] for Low VOC')
+legend('0 ppb', '0.2 ppb', '0.4 ppb', '0.6 ppb', '0.8 ppb', '1 ppb', '5 ppb')
 
 % HIGH VOC Scenario
 figure, plot(O3_0ppb_HIGHVOC_TIME,O3_0ppb_HIGHVOC_O3,'k')
@@ -37,9 +39,11 @@ hold on
 plot(O3_1ppb_HIGHVOC_TIME,O3_1ppb_HIGHVOC_O3,'m')
 hold on 
 plot(O3_5ppb_HIGHVOC_TIME,O3_5ppb_HIGHVOC_O3,'k')
-hold on 
-plot(O3_20ppb_HIGHVOC_TIME,O3_20ppb_HIGHVOC_O3,'b')
+%hold on 
+%plot(O3_20ppb_HIGHVOC_TIME,O3_20ppb_HIGHVOC_O3,'b')
+
 xlabel('Model Time (s)'), ylabel('[Ozone] (ppb)'), title('Varying Initial [O3] for High VOC')
+legend('0 ppb', '0.2 ppb', '0.4 ppb', '0.6 ppb', '0.8 ppb', '1 ppb', '5 ppb')
 
 %% Varying Light Source %%
 

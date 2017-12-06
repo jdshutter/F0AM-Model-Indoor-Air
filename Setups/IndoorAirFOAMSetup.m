@@ -29,11 +29,11 @@ Common chemical species and concentrations found indoors
 InitConc = {...
 %   names         conc(ppbv)           HoldMe
     'O3'              20.0               0;
-    'NO'              20                  0;
-    'NO2'             80                  0;
+    'NO'              10                 0;
+    'NO2'             40                 0;
     'HONO'            5.0                0;
     'H2O2'            1.0                0;
-    'LIMONENE'        70                 0;
+    'LIMONENE'        70.0               0;
     'APINENE'         0.9                0;
     'C5H8'            0.93               0;
     'OXYL'            2.3                0;
@@ -84,7 +84,7 @@ ModelOptions.EndPointsOnly  = 0;
 ModelOptions.LinkSteps      = 0;
 ModelOptions.Repeat         = 1;
 ModelOptions.IntTime        = 1*3600;
-ModelOptions.SavePath       = 'NOx_100_HIGHVOC.mat';
+ModelOptions.SavePath       = 'Surface_0_HIGHVOC.mat';
 
 %% MODEL RUN
 % Now we call the model.
