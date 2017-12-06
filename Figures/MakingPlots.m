@@ -6,64 +6,65 @@
 %% Varying Initial O3 Mixing Ratio %%
 
 % LOW VOC Scenario
-figure, plot(O3_0ppb_LOWVOC_TIME,O3_0ppb_LOWVOC_O3,'k')
+figure, plot(O3_5ppb_LOWVOC_TIME,O3_5ppb_LOWVOC_O3,'k')
 hold on 
-plot(O3_200ppt_LOWVOC_TIME,O3_200ppt_LOWVOC_O3,'b')
+plot(O3_1ppb_LOWVOC_TIME,O3_1ppb_LOWVOC_O3,'b')
 hold on 
-plot(O3_400ppt_LOWVOC_TIME,O3_400ppt_LOWVOC_O3,'r')
+plot(O3_800ppt_LOWVOC_TIME,O3_800ppt_LOWVOC_O3,'r')
 hold on 
 plot(O3_600ppt_LOWVOC_TIME,O3_600ppt_LOWVOC_O3,'g')
 hold on 
-plot(O3_800ppt_LOWVOC_TIME,O3_800ppt_LOWVOC_O3,'c')
+plot(O3_400ppt_LOWVOC_TIME,O3_400ppt_LOWVOC_O3,'c')
 hold on 
-plot(O3_1ppb_LOWVOC_TIME,O3_1ppb_LOWVOC_O3,'m')
+plot(O3_200ppt_LOWVOC_TIME,O3_200ppt_LOWVOC_O3,'m')
 hold on 
-plot(O3_5ppb_LOWVOC_TIME,O3_5ppb_LOWVOC_O3,'k')
+plot(O3_0ppb_LOWVOC_TIME,O3_0ppb_LOWVOC_O3,'k--')
 %hold on 
 %plot(O3_20ppb_LOWVOC_TIME,O3_20ppb_LOWVOC_O3,'b')
 
 xlabel('Model Time (s)'), ylabel('[Ozone] (ppb)'), title('Varying Initial [O3] for Low VOC')
-legend('0 ppb', '0.2 ppb', '0.4 ppb', '0.6 ppb', '0.8 ppb', '1 ppb', '5 ppb')
+legend('5 ppb', '1 ppb', '0.8 ppb', '0.6 ppb', '0.4 ppb', '0.2 ppb', '0 ppb')
 
 % HIGH VOC Scenario
-figure, plot(O3_0ppb_HIGHVOC_TIME,O3_0ppb_HIGHVOC_O3,'k')
+figure, plot(O3_5ppb_HIGHVOC_TIME,O3_5ppb_HIGHVOC_O3,'k')
 hold on 
-plot(O3_200ppt_HIGHVOC_TIME,O3_200ppt_HIGHVOC_O3,'b')
+plot(O3_1ppb_HIGHVOC_TIME,O3_1ppb_HIGHVOC_O3,'b')
 hold on 
-plot(O3_400ppt_HIGHVOC_TIME,O3_400ppt_HIGHVOC_O3,'r')
+plot(O3_800ppt_HIGHVOC_TIME,O3_800ppt_HIGHVOC_O3,'r')
 hold on 
 plot(O3_600ppt_HIGHVOC_TIME,O3_600ppt_HIGHVOC_O3,'g')
 hold on 
-plot(O3_800ppt_HIGHVOC_TIME,O3_800ppt_HIGHVOC_O3,'c')
+plot(O3_400ppt_HIGHVOC_TIME,O3_400ppt_HIGHVOC_O3,'c')
 hold on 
-plot(O3_1ppb_HIGHVOC_TIME,O3_1ppb_HIGHVOC_O3,'m')
+plot(O3_200ppt_HIGHVOC_TIME,O3_200ppt_HIGHVOC_O3,'m')
 hold on 
-plot(O3_5ppb_HIGHVOC_TIME,O3_5ppb_HIGHVOC_O3,'k')
+plot(O3_0ppb_HIGHVOC_TIME,O3_0ppb_HIGHVOC_O3,'k--')
 %hold on 
 %plot(O3_20ppb_HIGHVOC_TIME,O3_20ppb_HIGHVOC_O3,'b')
 
 xlabel('Model Time (s)'), ylabel('[Ozone] (ppb)'), title('Varying Initial [O3] for High VOC')
-legend('0 ppb', '0.2 ppb', '0.4 ppb', '0.6 ppb', '0.8 ppb', '1 ppb', '5 ppb')
-
+legend('5 ppb', '1 ppb', '0.8 ppb', '0.6 ppb', '0.4 ppb', '0.2 ppb', '0 ppb')
 %% Varying Light Source %%
 
 %LOW VOC Scenario
-figure, plot(CFT_LOWVOC_TIME,CFT_LOWVOC_O3,'k')
-hold on 
-plot(NCAR_LOWVOC_TIME,NCAR_LOWVOC_O3,'b')
+figure, plot(NCAR_LOWVOC_TIME,NCAR_LOWVOC_O3,'b')
 hold on 
 plot(Sunlight_LOWVOC_TIME,Sunlight_LOWVOC_O3,'r')
+hold on 
+plot(CFT_LOWVOC_TIME,CFT_LOWVOC_O3,'k')
 
 xlabel('Model Time (s)'), ylabel('[Ozone] (ppb)'), title('Varying Light Source for Low VOC')
+legend('Outdoor Sunlight', 'Indoor Sunlight', 'Compact Fluorescent Tube')
 
 %HIGH VOC Scenario 
-figure, plot(CFT_HIGHVOC_TIME,CFT_HIGHVOC_O3,'k')
-hold on 
-plot(NCAR_HIGHVOC_TIME,NCAR_HIGHVOC_O3,'b')
+figure, plot(NCAR_HIGHVOC_TIME,NCAR_HIGHVOC_O3,'b')
 hold on 
 plot(Sunlight_HIGHVOC_TIME,Sunlight_HIGHVOC_O3,'r')
+hold on 
+plot(CFT_HIGHVOC_TIME,CFT_HIGHVOC_O3,'k')
 
 xlabel('Model Time (s)'), ylabel('[Ozone] (ppb)'), title('Varying Light Source for High VOC')
+legend('Outdoor Sunlight', 'Indoor Sunlight', 'Compact Fluorescent Tube')
 
 %% Varying Surface Deposition Rates %%
 
